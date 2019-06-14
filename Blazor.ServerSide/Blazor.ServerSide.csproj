@@ -5,4 +5,14 @@
     <LangVersion>7.3</LangVersion>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Data\MovieData\person_node.csv" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Data\MovieData\person_node.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>

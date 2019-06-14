@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Blazor.ServerSide.Data;
+using Blazor.ServerSide.Data.MovieData;
 
 namespace Blazor.ServerSide
 {
@@ -21,6 +22,7 @@ namespace Blazor.ServerSide
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddSingleton<WeatherForecastService>();
+            services.AddSingleton<ActorService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
