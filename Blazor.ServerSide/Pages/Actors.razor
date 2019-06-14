@@ -1,0 +1,63 @@
+@page "/actors"
+@using Blazor.ServerSide.Data.MovieData
+@inject ActorService ActorService
+
+<h1>Actors (@currentCount)</h1>
+
+<p>This component demonstrates fetching data from an actor service.</p>
+
+
+<button class="btn btn-primary" onclick="@IncrementCount">Get 10 more</button>
+
+<br />
+<br />
+<br />
+<br />
+
+@if (actors == null)
+{
+<p><em>Loading...</em></p>
+}
+else
+{
+	//id:ID(Person);name;born:int;poster_image
+<table class="table">
+	<thead>
+		<tr>
+			<th>Person</th>
+			<th>Name</th>
+			<th>Date of Birth</th>'
+			<th>Pic</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var actor in actors)
+            {
+		<tr>
+			<td>@actor.Id</td>
+			<td>@actor.Name</td>
+			<td>@actor.Born</td>
+			<td><img src="@actor.PosterImage" alt="Image for @actor.Name"></td>
+
+		</tr>
+            }
+	</tbody>
+</table>
+}
+
+@functions {
+
+    int currentCount = 2;
+    Actor[] actors;
+
+    protected override async Task OnInitAsync()
+    {
+        actors = await ActorService.GetActorsAsync(@currentCount);
+    }
+
+    void IncrementCount()
+    {
+        currentCount += 10;
+        actors = ActorService.GetActorsAsync(@currentCount).Result;
+    }
+}
